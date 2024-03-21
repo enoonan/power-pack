@@ -2,16 +2,8 @@ import gleam/int
 import lustre
 import lustre/attribute
 import lustre/element.{type Element}
-import lustre/element/html
+import lustre/element/html.{div, p}
 import lustre/event
-// These examples are written with `lustre/ui` in mind. They'll work regardless,
-// but to see what `lustre/ui` can do make sure to run each of these examples with
-// the `--use-lustre-ui` flag:
-//
-//   $ gleam run -m lustre dev --use-lustre-ui
-//
-// In your own apps, make sure to add the `lustre/ui` dependency and include the
-// stylesheet somewhere.
 import lustre/ui
 import lustre/ui/styles
 
@@ -54,13 +46,13 @@ fn view(model: Model) -> Element(Msg) {
   let styles = [#("width", "100vw"), #("height", "100vh"), #("padding", "1rem")]
   let count = int.to_string(model)
 
-  html.div([], [
+  div([], [
     styles.elements(),
     ui.centre(
       [attribute.style(styles)],
       ui.stack([], [
         ui.button([event.on_click(Incr)], [element.text("+")]),
-        html.p([attribute.style([#("text-align", "center")])], [
+        p([attribute.style([#("text-align", "center")])], [
           element.text(count),
         ]),
         ui.button([event.on_click(Decr)], [element.text("-")]),
