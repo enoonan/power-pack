@@ -11,19 +11,22 @@ import lustre/ui/styles
 
 pub fn main() {
   let app = lustre.simple(init, update, view)
-  let assert Ok(_) = lustre.start(app, "[data-lustre-app]", 0)
+  let assert Ok(_) = lustre.start(app, "[data-lustre-app]", 10)
 }
 
 // MODEL -----------------------------------------------------------------------
 
-type Model =
-  Int
+pub type Model {
+  Model(
+    total_sites: Int,
+    power_packs: Int,
+    power_pack_micros: Int
+  )
+}
+
 
 fn init(initial_count: Int) -> Model {
-  case initial_count < 0 {
-    True -> 0
-    False -> initial_count
-  }
+  Model(total_sites: initial_count, power_packs: initial_count, power_pack_micros: 0)
 }
 
 // UPDATE ----------------------------------------------------------------------
@@ -35,8 +38,8 @@ pub opaque type Msg {
 
 fn update(model: Model, msg: Msg) -> Model {
   case msg {
-    Incr -> model + 1
-    Decr -> model - 1
+    Incr -> Model(..model, power_packs: model.power_packs + 1)
+    Decr -> Model(..model, power_packs: model.power_packs - 1)
   }
 }
 
@@ -44,7 +47,7 @@ fn update(model: Model, msg: Msg) -> Model {
 
 fn view(model: Model) -> Element(Msg) {
   let styles = [#("width", "100vw"), #("height", "100vh"), #("padding", "1rem")]
-  let count = int.to_string(model)
+  let count = int.to_string(model.power_packs)
 
   html.div([], [
     styles.elements(),
