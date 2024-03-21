@@ -11,7 +11,7 @@ import lustre/ui/styles
 
 pub fn main() {
   let app = lustre.simple(init, update, view)
-  let assert Ok(_) = lustre.start(app, "[data-lustre-app]", 10)
+  let assert Ok(_) = lustre.start(app, "#app", 10)
 }
 
 // MODEL -----------------------------------------------------------------------
