@@ -1,4 +1,3 @@
-import "normalize.css";
 import "./style.css";
 import { main } from "./src/power_pack.gleam";
 
