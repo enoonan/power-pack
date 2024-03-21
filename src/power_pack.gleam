@@ -10,7 +10,7 @@ pub fn main() {
     lustre.element(ui.centre(
       [attribute.style(styles)],
       html.div([], [
-        html.h1([], [element.text("Hello, Eileen.")]),
+        html.h1([], [element.text("Hello, Eileen. Yo")]),
         html.h2([], [element.text("Welcome to Lustre.")]),
       ]),
     ))
