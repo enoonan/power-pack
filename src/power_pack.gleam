@@ -2,7 +2,7 @@ import gleam/int
 import lustre
 import lustre/attribute
 import lustre/element.{type Element}
-import lustre/element/html.{div, p}
+import lustre/element/html
 import lustre/event
 import lustre/ui
 import lustre/ui/styles
@@ -46,13 +46,13 @@ fn view(model: Model) -> Element(Msg) {
   let styles = [#("width", "100vw"), #("height", "100vh"), #("padding", "1rem")]
   let count = int.to_string(model)
 
-  div([], [
+  html.div([], [
     styles.elements(),
     ui.centre(
       [attribute.style(styles)],
       ui.stack([], [
         ui.button([event.on_click(Incr)], [element.text("+")]),
-        p([attribute.style([#("text-align", "center")])], [
+        html.p([attribute.style([#("text-align", "center")])], [
           element.text(count),
         ]),
         ui.button([event.on_click(Decr)], [element.text("-")]),
